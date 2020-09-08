@@ -41,8 +41,18 @@ class counter extends Component {
   };
 
   render() {
+    const check =
+      this.state.logs.length <= 0 ? (
+        <ul className="list-group list-group-horizontal">
+          <li className="list-group-item">Empty Logs</li>
+          <li className="list-group-item">N/A</li>
+        </ul>
+      ) : (
+        ""
+      );
+
     return (
-      <div className="container-fluid">
+      <div className="container-fluid" style={{ margin: "100px 0px 0px 0px" }}>
         <div className="row">
           <div className="col-lg-1 offset-md-3">
             <Start
@@ -51,6 +61,7 @@ class counter extends Component {
             />
           </div>
           <div className="col-lg-4 offset-md-4">
+            {check}
             {this.state.logs.map((log) => (
               <Lists key={log.id} log={log} handleDelete={this.handleDelete} />
             ))}
